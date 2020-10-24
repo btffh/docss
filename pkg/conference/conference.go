@@ -1,7 +1,7 @@
 package conference
 
 import (
-	"docss/internal/student"
+	"docss/pkg/student"
 )
 
 type Conference struct {

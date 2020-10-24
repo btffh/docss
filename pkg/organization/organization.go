@@ -1,7 +1,7 @@
 package organization
 
 import (
-	"docss/internal/employee"
+	"docss/pkg/employee"
 )
 
 // An Organization type represents an organization that holds employees.

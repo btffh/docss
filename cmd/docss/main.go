@@ -1,11 +1,11 @@
 package main
 
 import (
-	"docss/internal/conference"
-	"docss/internal/employee"
-	"docss/internal/logger"
-	"docss/internal/organization"
-	"docss/internal/student"
+	"docss/pkg/conference"
+	"docss/pkg/employee"
+	"docss/pkg/logger"
+	"docss/pkg/organization"
+	"docss/pkg/student"
 	"math/rand"
 
 	"go.uber.org/zap/zapcore"

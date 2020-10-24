@@ -1,6 +1,6 @@
 package employee
 
-import "docss/internal/logger"
+import "docss/pkg/logger"
 
 // An Employee represents a single employee that work for a company
 // on a full or partial rate.
