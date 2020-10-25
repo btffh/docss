@@ -1,12 +1,13 @@
 package main
 
 import (
+	"docss"
+	"docss/internal/logger"
 	"docss/pkg/conference"
 	"docss/pkg/employee"
-	"docss/pkg/logger"
 	"docss/pkg/organization"
 	"docss/pkg/student"
-	"math/rand"
+	"time"
 
 	"go.uber.org/zap/zapcore"
 )
@@ -16,18 +17,22 @@ func main() {
 
 	schoolStudents := make([]*student.SchoolStudent, 0)
 	for i := 0; i < 11; i++ {
-		schoolStudents = append(schoolStudents, &student.SchoolStudent{
-			Student: student.Student{},
+		st := &student.SchoolStudent{
+			Student: *student.NewStudent("William", "Turner Jr.", "Caribbean Sea", i+1, time.June, 1681),
 			Grade:   i + 1,
-		})
+		}
+		schoolStudents = append(schoolStudents, st)
+		logger.Infof("New school student %s", st)
 	}
 
 	universityStudents := make([]*student.UniversityStudent, 0)
 	for i := 0; i < 4; i++ {
-		universityStudents = append(universityStudents, &student.UniversityStudent{
-			Student: student.Student{},
+		st := &student.UniversityStudent{
+			Student: *student.NewStudent("Davy", "Jones", "Caribbean Sea", i+1, time.July, 1654),
 			Course:  i + 1,
-		})
+		}
+		universityStudents = append(universityStudents, st)
+		logger.Infof("New university student %s", st)
 	}
 
 	conference := conference.NewConference(schoolStudents, universityStudents)
@@ -37,22 +42,11 @@ func main() {
 
 	employees := make([]*employee.Employee, 0)
 	for i := 0; i < 10; i++ {
-		employees = append(employees, employee.NewEmployee(randomHours()))
+		employees = append(employees, employee.NewEmployee(docss.RandomHours()))
 	}
 
 	org := organization.NewOrganization(employees)
 	logger.Infof("organization has %v full rate employees", org.CounFullRate())
 
 	logger.Fatal("exiting process")
-}
-
-func randomHours() int {
-	switch rand.Intn(6) {
-	case 0:
-		return 20
-	case 1:
-		return 30
-	default:
-		return 40
-	}
 }
